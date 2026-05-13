@@ -563,12 +563,32 @@ button:last-child:hover,
 
 .portfolio-section{
   background:#0b1120;
+  display:flex;
+  justify-content:center;
 }
 
 .portfolio-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:30px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  max-width:700px;
+  margin:0 auto 70px auto;
+}
+
+.section-title h2,
+.section-title p{
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .portfolio-card{
@@ -832,6 +852,31 @@ button:last-child:hover,
   background:linear-gradient(to right,#fff,#60a5fa);
   background-clip:text;
   -webkit-text-fill-color:transparent;
+}
+
+.adhesion-cta{
+  margin-top:50px;
+  display:flex;
+  justify-content:center;
+}
+
+.adhesion-cta a{
+  display:inline-block;
+  padding:16px 30px;
+  border-radius:999px;
+
+  background:linear-gradient(to right,#60a5fa,#2563eb);
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+
+  box-shadow:0 10px 30px rgba(37,99,235,0.4);
+  transition:0.3s;
+}
+
+.adhesion-cta a:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 40px rgba(37,99,235,0.6);
 }
 
 /* =========================================================
