@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifs - FabLab Lannion</title>
+  <link rel="icon" href="https://fablablannion.github.io/images/logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
+
+  <!-- =========================================================
+       HERO
+  ========================================================== -->
+
+  <section class="tarifs">
+
+    <div class="container tarifs-container">
+
+      <h1>Tarifs 2025</h1>
+
+      <p>
+        Retrouvez l’ensemble des tarifs des machines, prestations
+        et adhésions du FabLab Lannion.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================
+       MACHINES DE DECOUPE
+  ========================================================== -->
+
+  <section class="tarifs-section">
+
+    <div class="container-page">
+
+      <div class="section-title">
+        <h2>Machines de découpe</h2>
+        <p>Prestations de découpe et fabrication numérique.</p>
+      </div>
+
+      <div class="tarif-table">
+
+        <div class="tarif-header">
+          <span>Prestation</span>
+          <span>Adhérents</span>
+          <span>Extérieur</span>
+          <span>Détail</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Découpe Laser</span>
+          <span>5,50 €</span>
+          <span>11,00 €</span>
+          <span>Le quart d’heure</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Découpe Plasma</span>
+          <span>5,50 €</span>
+          <span>11,00 €</span>
+          <span>Le quart d’heure</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Fraiseuse numérique</span>
+          <span>5,50 €</span>
+          <span>11,00 €</span>
+          <span>Le quart d’heure</span>
+        </div>
+
+      </div>
+
+      <div class="tarif-note">
+        <p>
+          Les matériaux doivent être fournis par l’utilisateur.
+          Toute période entamée est due.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================
+       TEXTILE
+  ========================================================== -->
+
+  <section class="tarifs-section">
+
+    <div class="container-page">
+
+      <div class="section-title">
+        <h2>Textiles & Sérigraphie</h2>
+      </div>
+
+      <div class="tarif-table">
+
+        <div class="tarif-header">
+          <span>Prestation</span>
+          <span>Adhérents</span>
+          <span>Extérieur</span>
+          <span>Détail</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Brodeuse numérique</span>
+          <span>2,20 €</span>
+          <span>4,40 €</span>
+          <span>Le quart d’heure</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Découpeuse vinyle</span>
+          <span>1,50 €</span>
+          <span>3,00 €</span>
+          <span>Forfait découpe</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Vinyle autocollant</span>
+          <span>6,50 €</span>
+          <span>13,00 €</span>
+          <span>Le mètre</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Impression photo A4</span>
+          <span>2,50 €</span>
+          <span>5,00 €</span>
+          <span>La feuille</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================
+       3D
+  ========================================================== -->
+
+  <section class="tarifs-section">
+
+    <div class="container-page">
+
+      <div class="section-title">
+        <h2>Création 3D</h2>
+      </div>
+
+      <div class="tarif-table">
+
+        <div class="tarif-header">
+          <span>Prestation</span>
+          <span>Adhérents</span>
+          <span>Extérieur</span>
+          <span>Détail</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Impression 3D filament</span>
+          <span>1,20 €</span>
+          <span>2,40 €</span>
+          <span>Forfait impression</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Impression 3D résine</span>
+          <span>1,50 €</span>
+          <span>3,00 €</span>
+          <span>Forfait impression</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Filament ABS / PLA</span>
+          <span>0,12 €</span>
+          <span>0,24 €</span>
+          <span>Le gramme</span>
+        </div>
+
+        <div class="tarif-row">
+          <span>Résine</span>
+          <span>0,20 €</span>
+          <span>0,40 €</span>
+          <span>Le gramme</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================
+       ADHESION
+  ========================================================== -->
+
+  <section class="tarifs-section">
+
+    <div class="container-page">
+
+      <div class="section-title">
+        <h2>Adhésion</h2>
+      </div>
+
+      <div class="adhesion-grid">
+
+        <div class="adhesion-card">
+
+          <h3>Plein tarif</h3>
+
+          <div class="prix">
+            35€
+          </div>
+
+          <p>
+            Adhésion annuelle au FabLab.
+          </p>
+
+        </div>
+
+        <div class="adhesion-card">
+
+          <h3>Tarif social</h3>
+
+          <div class="prix">
+            10€
+          </div>
+
+          <p>
+            Sur présentation de justificatifs.
+          </p>
+
+        </div>
+
+        <div class="adhesion-card">
+
+          <h3>Personne morale</h3>
+
+          <div class="prix">
+            35€
+          </div>
+
+          <p>
+            Adhésion annuelle entreprise / association.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <div id="footer"></div>
+
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>

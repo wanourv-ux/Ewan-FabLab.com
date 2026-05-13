@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fab-Lab Lannion</title>
+  <link rel="icon" href="https://fablablannion.github.io/images/logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
+
+  <section class="présentation" id="accueil">
+    <div class="présentation-container">
+
+      <div>
+        <h2>Fab-Lab Lannion</h2>
+
+        <p>
+          Le FabLab de Lannion est un espace collaboratif ouvert à tous pour apprendre,
+          créer et partager autour de la fabrication numérique.
+        </p>
+
+        <p>
+          Débutant ou passionné, venez utiliser nos machines et participer à une
+          communauté créative et innovante.
+        </p>
+
+        <div class="buttons">
+          <button>Tarif</button>
+          <button>Adhésion</button>
+        </div>
+      </div>
+
+      <div class="horaires">
+        <h3>Horaires</h3>
+
+        <div class="horaire-item">
+          <span>Lundi</span>
+          <strong>14h00 - 18h00</strong>
+        </div>
+
+        <div class="horaire-item">
+          <span>Mardi</span>
+          <strong>14h00 - 19h00</strong>
+        </div>
+
+        <div class="horaire-item">
+          <span>Mercredi</span>
+          <strong>10h00 - 19h00</strong>
+        </div>
+
+        <div class="horaire-item">
+          <span>Jeudi</span>
+          <strong>14h00 - 19h00</strong>
+        </div>
+
+        <div class="horaire-item">
+          <span>Vendredi</span>
+          <strong>14h00 - 18h00</strong>
+        </div>
+
+        <div class="horaire-item">
+          <span>Samedi</span>
+          <strong>10h00 - 17h00</strong>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      
+      <div class="text">
+        <h1>And lastly, this one. Checkmate.</h1>
+        <p>
+          And yes, this is the last block of representative placeholder content. 
+          Again, not really intended to be actually read, simply here to give you 
+          a better view of what this would look like with some actual content. Your content.
+        </p>
+      </div>
+
+      <div class="image">
+        <img src="/image/app.jpg" alt="image">
+      </div>
+
+    </div>
+
+    <div class="container">
+
+      <div class="image">
+        <img src="/image/app.jpg" alt="image">
+      </div>
+
+      <div class="text">
+        <h1>And lastly, this one. Checkmate.</h1>
+        <p>
+          And yes, this is the last block of representative placeholder content. 
+          Again, not really intended to be actually read, simply here to give you 
+          a better view of what this would look like with some actual content. Your content.
+        </p>
+      </div>
+    </div>
+  </section>
+
+    <section class="machines-section" id="machines">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Nos Machines</h2>
+        <p>Découvrez les équipements disponibles au FabLab.</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card machine-card">
+          <div class="machine-image">
+            <img src="image/3d.jpg" alt="machine 3D">
+          </div>
+
+          <div class="machine-content">
+            <h3>Imprimante 3D</h3>
+            <p>
+              Réalisez des prototypes, pièces et objets personnalisés grâce à l’impression 3D.
+            </p>
+          </div>
+        </div>
+
+        <div class="card machine-card">
+          <div class="machine-image">
+            <img src="image/3d.jpg" alt="machine 3D">
+          </div>
+
+          <div class="machine-content">
+            <h3>Imprimante 3D</h3>
+            <p>
+              Réalisez des prototypes, pièces et objets personnalisés grâce à l’impression 3D.
+            </p>
+          </div>
+        </div>
+
+        <div class="card machine-card">
+          <div class="machine-image">
+            <img src="image/3d.jpg" alt="machine 3D">
+          </div>
+
+          <div class="machine-content">
+            <h3>Imprimante 3D</h3>
+            <p>
+              Réalisez des prototypes, pièces et objets personnalisés grâce à l’impression 3D.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <div id="footer"></div>
+
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+</body>
+</html>

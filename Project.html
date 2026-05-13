@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets - FabLab Lannion</title>
+  <link rel="icon" href="https://fablablannion.github.io/images/logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
+
+  <!-- =========================
+       PROJETS
+  ========================== -->
+
+  <section class="PROJETS">
+
+    <div class="projets-header">
+      <h1>Nos Réalisations</h1>
+
+      <p>
+        Découvrez les créations réalisées par les membres du FabLab.
+      </p>
+    </div>
+
+    <!-- SLIDER -->
+    <div class="projets-slider">
+
+      <div class="projets-track">
+
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+
+        <!-- doublon -->
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+        <img src="image/OS.jpg" alt="">
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       PORTFOLIO
+  ========================== -->
+
+  <section class="portfolio-section">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Portfolio</h2>
+
+        <p>
+          Quelques projets créés au FabLab.
+        </p>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-card">
+          <img src="image/bois.jpg" alt="">
+
+          <div class="portfolio-content">
+            <h3>Robot Arduino</h3>
+
+            <p>
+              Projet électronique et programmation.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="image/bois.jpg" alt="">
+
+          <div class="portfolio-content">
+            <h3>Découpe Laser</h3>
+
+            <p>
+              Gravure et découpe sur bois.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="image/bois.jpg" alt="">
+
+          <div class="portfolio-content">
+            <h3>Découpe Laser</h3>
+
+            <p>
+              Gravure et découpe sur bois.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="image/bois.jpg" alt="">
+
+          <div class="portfolio-content">
+            <h3>Découpe Laser</h3>
+
+            <p>
+              Gravure et découpe sur bois.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="image/bois.jpg" alt="">
+
+          <div class="portfolio-content">
+            <h3>Découpe Laser</h3>
+
+            <p>
+              Gravure et découpe sur bois.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="image/bois.jpg" alt="">
+
+          <div class="portfolio-content">
+            <h3>Découpe Laser</h3>
+
+            <p>
+              Gravure et découpe sur bois.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="image/bois.jpg" alt="">
+
+          <div class="portfolio-content">
+            <h3>Découpe Laser</h3>
+
+            <p>
+              Gravure et découpe sur bois.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="image/bois.jpg" alt="">
+
+          <div class="portfolio-content">
+            <h3>Découpe Laser</h3>
+
+            <p>
+              Gravure et découpe sur bois.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+    <!-- FOOTER -->
+
+  <div id="footer"></div>
+
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>

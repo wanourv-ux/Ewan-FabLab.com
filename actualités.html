@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualités - FabLab Lannion</title>
+  <link rel="icon" href="https://fablablannion.github.io/images/logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <div id="navbar"></div>
+
+  <script>
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      });
+  </script>
+
+  <!-- =========================
+       ACTUALITÉS
+  ========================== -->
+
+  <section class="actualites-top">
+
+    <div class="container">
+      <h1>Actualités</h1>
+    </div>
+
+  </section>
+
+  <!-- =========================
+       ARTICLES
+  ========================== -->
+
+  <section class="blog-section">
+
+    <div class="container">
+
+      <div class="blog-posts">
+
+        <!-- ARTICLE -->
+
+        <article class="blog-post">
+
+          <div class="blog-date-box">
+            <span class="day">11</span>
+            <span class="month">MAI</span>
+          </div>
+
+          <div class="blog-content">
+
+            <h2>Atelier impression 3D</h2>
+
+            <p>
+              Venez découvrir les bases de l'impression 3D et apprendre
+              à créer vos premières pièces.
+            </p>
+
+            <a href="#">Lire la suite</a>
+
+          </div>
+
+        </article>
+
+        <!-- ARTICLE -->
+
+        <article class="blog-post">
+
+          <div class="blog-date-box">
+            <span class="day">06</span>
+            <span class="month">MAI</span>
+          </div>
+
+          <div class="blog-content">
+
+            <h2>Nouveau matériel disponible</h2>
+
+            <p>
+              Le FabLab accueille une nouvelle machine de découpe laser
+              accessible aux adhérents.
+            </p>
+
+            <a href="#">Lire la suite</a>
+
+          </div>
+
+        </article>
+
+        <!-- ARTICLE -->
+
+        <article class="blog-post">
+
+          <div class="blog-date-box">
+            <span class="day">29</span>
+            <span class="month">AVR</span>
+          </div>
+
+          <div class="blog-content">
+
+            <h2>Journée découverte</h2>
+
+            <p>
+              Une journée ouverte à tous pour visiter les locaux
+              et tester les machines du FabLab.
+            </p>
+
+            <a href="#">Lire la suite</a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <div id="footer"></div>
+
+  <script>
+    fetch("footer.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footer").innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>
