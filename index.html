@@ -137,60 +137,46 @@
 
       <div class="cards collapsed" id="machinesList">
 
-        <!-- MACHINE 1 -->
         <div class="card machine-card">
           <div class="machine-image">
-            <img src="image/3d.jpg">
+            <img src="image/3d.jpg" alt="machine 3D">
           </div>
-          <h3>Imprimante 3D</h3>
-          <p>Création d’objets en 3D</p>
+
+          <div class="machine-content">
+            <h3>Imprimante 3D</h3>
+            <p>
+              Réalisez des prototypes, pièces et objets personnalisés grâce à l’impression 3D.
+            </p>
+          </div>
         </div>
 
-        <!-- MACHINE 2 -->
         <div class="card machine-card">
           <div class="machine-image">
-            <img src="image/3d.jpg">
+            <img src="image/3d.jpg" alt="machine 3D">
           </div>
-          <h3>Découpe Laser</h3>
-          <p>Découpe précise bois / plexi</p>
+
+          <div class="machine-content">
+            <h3>Imprimante 3D</h3>
+            <p>
+              Réalisez des prototypes, pièces et objets personnalisés grâce à l’impression 3D.
+            </p>
+          </div>
         </div>
 
-        <!-- MACHINE 3 -->
         <div class="card machine-card">
           <div class="machine-image">
-            <img src="image/3d.jpg">
+            <img src="image/3d.jpg" alt="machine 3D">
           </div>
-          <h3>Vinyle</h3>
-          <p>Découpe stickers</p>
-        </div>
 
-        <!-- MACHINE 4 -->
-        <div class="card machine-card">
-          <div class="machine-image">
-            <img src="image/3d.jpg">
+          <div class="machine-content">
+            <h3>Imprimante 3D</h3>
+            <p>
+              Réalisez des prototypes, pièces et objets personnalisés grâce à l’impression 3D.
+            </p>
           </div>
-          <h3>CNC</h3>
-          <p>Usinage bois / alu</p>
-        </div>
-
-        <!-- MACHINE 5 -->
-        <div class="card machine-card">
-          <div class="machine-image">
-            <img src="image/3d.jpg">
-          </div>
-          <h3>Électronique</h3>
-          <p>Projets Arduino</p>
         </div>
 
       </div>
-
-      <!-- BOUTON -->
-      <div class="machines-toggle">
-        <button onclick="toggleMachines()" id="toggleBtn">
-          Voir toutes les machines
-        </button>
-      </div>
-
     </div>
   </section>
 
@@ -204,21 +190,6 @@
       .then(data => {
         document.getElementById("footer").innerHTML = data;
       });
-  </script>
-
-  <script>
-    function toggleMachines(){
-      const list = document.getElementById("machinesList");
-      const btn = document.getElementById("toggleBtn");
-
-      list.classList.toggle("collapsed");
-
-      if(list.classList.contains("collapsed")){
-        btn.innerText = "Voir toutes les machines";
-      } else {
-        btn.innerText = "Voir moins";
-      }
-    }
   </script>
 </body>
 </html>
