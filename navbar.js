@@ -7,38 +7,90 @@ class NavBar extends HTMLElement {
             <img src="https://fablablannion.github.io/images/logo.png" alt="Logo FabLab" class="logo-img">
             FabLab Lannion
           </a>
-          <nav class="nav-links">
+
+          <nav class="nav-links" id="nav-links">
             <a href="index.html">Accueil</a>
             <a href="Project.html">Projets</a>
             <a href="actualités.html">Actualités</a>
             <a href="Tarifs.html">Tarifs</a>
+            <a href="Bénévoles.html">Bénévoles</a>
             <a href="https://bookstack.ouedraoknopp.bzh/" target="_blank" rel="noopener noreferrer">Wiki</a>
+            <div class="nav-theme-row" id="mobile-theme-row">
+              <span class="nav-theme-label" id="mobile-theme-label">Mode sombre</span>
+              <button id="mobile-theme-toggle" class="pill-switch" aria-label="Changer de thème">
+                <span class="pill-track">
+                  <span class="pill-thumb">
+                    <span class="pill-icon"></span>
+                  </span>
+                </span>
+              </button>
+            </div>
           </nav>
-          <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+          <div class="navbar-right">
+            <button id="desktop-theme-toggle" class="pill-switch" aria-label="Changer de thème">
+              <span class="pill-track">
+                <span class="pill-thumb">
+                  <span class="pill-icon"></span>
+                </span>
+              </span>
+            </button>
+
+            <button class="hamburger" id="hamburger" aria-expanded="false" aria-label="Menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
       </header>
     `;
 
-    const toggleBtn = this.querySelector("#theme-toggle");
-    const themeLink = document.getElementById("theme-style");
+    /* ── THEME ── */
+    const desktopToggle = this.querySelector("#desktop-theme-toggle");
+    const mobileToggle  = this.querySelector("#mobile-theme-toggle");
+    const mobileLabel   = this.querySelector("#mobile-theme-label");
+    const themeLink     = document.getElementById("theme-style");
 
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "style.css" || savedTheme === "style-light.css") {
-    themeLink.href = savedTheme;
+    let savedTheme = localStorage.getItem("theme");
+    if (!savedTheme) {
+      savedTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "style.css" : "style-light.css";
     }
-    toggleBtn.textContent = themeLink.href.includes("style-light") ? "☀️" : "🌙";
 
-    toggleBtn.addEventListener("click", () => {
-      const isLight = themeLink.href.includes("style-light");
-      if (isLight) {
-        themeLink.href = "style.css";
-        localStorage.setItem("theme", "style.css");
-        toggleBtn.textContent = "🌙";
-      } else {
-        themeLink.href = "style-light.css";
-        localStorage.setItem("theme", "style-light.css");
-        toggleBtn.textContent = "☀️";
-      }
+    function applyTheme(theme) {
+      themeLink.href = theme;
+      localStorage.setItem("theme", theme);
+      const isLight = theme.includes("style-light");
+      desktopToggle.classList.toggle("is-light", isLight);
+      mobileToggle.classList.toggle("is-light", isLight);
+      mobileLabel.textContent = isLight ? "Mode clair" : "Mode sombre";
+    }
+
+    applyTheme(savedTheme);
+
+    [desktopToggle, mobileToggle].forEach(btn => {
+      btn.addEventListener("click", () => {
+        const isLight = themeLink.href.includes("style-light");
+        applyTheme(isLight ? "style.css" : "style-light.css");
+      });
+    });
+
+    /* ── HAMBURGER ── */
+    const hamburger = this.querySelector("#hamburger");
+    const navLinks  = this.querySelector("#nav-links");
+
+    hamburger.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", isOpen);
+    });
+
+    // Fermer le menu si on clique sur un lien
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      });
     });
   }
 }

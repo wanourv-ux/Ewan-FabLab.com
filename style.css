@@ -140,6 +140,14 @@ p{
   outline-offset:3px;
 }
 
+/* NAVBAR RIGHT — regroupe toggle + hamburger */
+
+.navbar-right{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
 /* HAMBURGER */
 
 .hamburger{
@@ -216,12 +224,14 @@ button,
   font-size:16px;
   font-weight:600;
   transition:all .3s ease;
+  display:inline-block;
+  text-decoration:none;
+  text-align:center;
 }
 
 .btn{
   background:white;
   color:black;
-  text-decoration:none;
 }
 
 .btn:hover{
@@ -309,9 +319,10 @@ button,
 .buttons{
   display:flex;
   justify-content:center;
+  align-items:center;
   gap:15px;
   margin-top:40px;
-  margin-bottom:80px;
+  margin-bottom:40px;
   flex-wrap:wrap;
 }
 
@@ -1016,20 +1027,27 @@ a:focus-visible{
   }
 
   .navbar-container{
-    flex-wrap:wrap;
-    height:auto;
-    padding:16px 0;
-    gap:0;
-    align-items:center;
+    height:70px;
+    padding:0;
+    flex-wrap:nowrap;
+    position:relative;
   }
 
   .nav-links{
     display:none;
-    width:100%;
+    position:absolute;
+    top:70px;
+    left:0;
+    right:0;
     flex-direction:column;
-    align-items:center;
+    align-items:stretch;
     gap:0;
-    padding:10px 0 16px;
+    background:rgba(5,8,22,0.97);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    padding:8px 0 12px;
+    z-index:999;
+    animation:menuSlide 0.22s ease;
   }
 
   .nav-links.open{
@@ -1037,14 +1055,20 @@ a:focus-visible{
   }
 
   .nav-links a{
-    padding:12px 20px;
+    padding:14px 24px;
     width:100%;
-    text-align:center;
+    text-align:left;
     border-radius:0;
+    font-size:17px;
+    border-bottom:1px solid rgba(255,255,255,0.05);
   }
 
-  .theme-toggle{
-    order:3;
+  .nav-links a:last-child{
+    border-bottom:none;
+  }
+
+  .nav-links.open .nav-theme-row{
+    display:flex;
   }
 
   .footer-container{
@@ -1054,6 +1078,97 @@ a:focus-visible{
 
 }
 
+
+@keyframes menuSlide{
+  from{ opacity:0; transform:translateY(-8px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* =========================================================
+   SWITCH THÈME MOBILE
+========================================================= */
+
+.nav-theme-row{
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 24px;
+  margin-top:4px;
+}
+
+.nav-theme-label{
+  font-size:17px;
+  font-weight:500;
+  color:#d1dae6;
+}
+
+/* Le switch lui-même */
+.pill-switch{
+  background:none;
+  border:none;
+  padding:0;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+}
+
+/* Switch desktop caché sur mobile */
+#desktop-theme-toggle{
+  display:flex;
+}
+
+@media(max-width:900px){
+  #desktop-theme-toggle{
+    display:none;
+  }
+}
+
+.pill-track{
+  width:64px;
+  height:34px;
+  border-radius:999px;
+  background:#0d1f3c;
+  border:2px solid #1e3a5f;
+  display:flex;
+  align-items:center;
+  padding:3px;
+  transition:background 0.35s, border-color 0.35s;
+  position:relative;
+}
+
+.pill-thumb{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  background:#0079c9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform 0.35s cubic-bezier(.4,0,.2,1), background 0.35s;
+  transform:translateX(0);
+  flex-shrink:0;
+}
+
+.pill-icon::before{
+  content:"🌙";
+  font-size:14px;
+  line-height:1;
+}
+
+/* État clair */
+.pill-switch.is-light .pill-track{
+  background:#fff3d6;
+  border-color:#f6c640;
+}
+
+.pill-switch.is-light .pill-thumb{
+  background:#f6a800;
+  transform:translateX(30px);
+}
+
+.pill-switch.is-light .pill-icon::before{
+  content:"☀️";
+}
 
 @media(max-width:700px){
 
