@@ -1,3 +1,14 @@
+/* =========================================================
+   NAVBAR — thème persistant entre les pages via localStorage
+   Priorité : localStorage > prefers-color-scheme
+========================================================= */
+
+(function () {
+  const saved = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+})();
+
 class NavBar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -46,49 +57,33 @@ class NavBar extends HTMLElement {
       </header>
     `;
 
-    /* ── THEME ── */
-    const desktopToggle = this.querySelector("#desktop-theme-toggle");
-    const mobileToggle  = this.querySelector("#mobile-theme-toggle");
-    const mobileLabel   = this.querySelector("#mobile-theme-label");
-    const themeLink     = document.getElementById("theme-style");
+    const html    = document.documentElement;
+    const label   = this.querySelector("#mobile-theme-label");
+    const toggles = [
+      this.querySelector("#desktop-theme-toggle"),
+      this.querySelector("#mobile-theme-toggle"),
+    ];
 
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    const isDark = () => html.getAttribute("data-theme") === "dark";
 
-    // "theme-manual" indique que l'utilisateur a choisi explicitement
-    const manualTheme = localStorage.getItem("theme-manual");
-    const initialTheme = manualTheme
-      ? manualTheme
-      : (prefersDark.matches ? "style.css" : "style-light.css");
+    const syncUI = () => {
+      const dark = isDark();
+      toggles.forEach(btn => btn.classList.toggle("is-light", !dark));
+      if (label) label.textContent = dark ? "Mode sombre" : "Mode clair";
+    };
 
-    function applyTheme(theme, isManual = false) {
-      themeLink.href = theme;
-      if (isManual) {
-        localStorage.setItem("theme-manual", theme);
-      }
-      const isLight = theme.includes("style-light");
-      desktopToggle.classList.toggle("is-light", isLight);
-      mobileToggle.classList.toggle("is-light", isLight);
-      mobileLabel.textContent = isLight ? "Mode clair" : "Mode sombre";
-    }
+    syncUI();
 
-    applyTheme(initialTheme);
-
-    // Réagir aux changements de thème système en temps réel
-    // (uniquement si l'utilisateur n'a pas choisi manuellement)
-    prefersDark.addEventListener("change", (e) => {
-      if (!localStorage.getItem("theme-manual")) {
-        applyTheme(e.matches ? "style.css" : "style-light.css");
-      }
-    });
-
-    [desktopToggle, mobileToggle].forEach(btn => {
+    toggles.forEach(btn => {
       btn.addEventListener("click", () => {
-        const isLight = themeLink.href.includes("style-light");
-        applyTheme(isLight ? "style.css" : "style-light.css", true);
+        const next = isDark() ? "light" : "dark";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        syncUI();
       });
     });
 
-    /* ── HAMBURGER ── */
+    /* HAMBURGER */
     const hamburger = this.querySelector("#hamburger");
     const navLinks  = this.querySelector("#nav-links");
 
@@ -97,7 +92,6 @@ class NavBar extends HTMLElement {
       hamburger.setAttribute("aria-expanded", isOpen);
     });
 
-    // Fermer le menu si on clique sur un lien
     navLinks.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("open");

@@ -707,7 +707,7 @@ button,
 .blog-date-box .month{
   font-size:16px;
   letter-spacing:3px;
-  color:#9ca3af;
+  color:#6b7280;
   font-weight:600;
 }
 
@@ -1030,7 +1030,7 @@ a:focus-visible{
   border-top:1.5px solid #e5e7eb;
   text-align:center;
   padding:25px;
-  color:#9ca3af;
+  color:#6b7280;
   font-size:14px;
   background:#f9fafb;
 }
