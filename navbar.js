@@ -52,27 +52,39 @@ class NavBar extends HTMLElement {
     const mobileLabel   = this.querySelector("#mobile-theme-label");
     const themeLink     = document.getElementById("theme-style");
 
-    let savedTheme = localStorage.getItem("theme");
-    if (!savedTheme) {
-      savedTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "style.css" : "style-light.css";
-    }
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-    function applyTheme(theme) {
+    // "theme-manual" indique que l'utilisateur a choisi explicitement
+    const manualTheme = localStorage.getItem("theme-manual");
+    const initialTheme = manualTheme
+      ? manualTheme
+      : (prefersDark.matches ? "style.css" : "style-light.css");
+
+    function applyTheme(theme, isManual = false) {
       themeLink.href = theme;
-      localStorage.setItem("theme", theme);
+      if (isManual) {
+        localStorage.setItem("theme-manual", theme);
+      }
       const isLight = theme.includes("style-light");
       desktopToggle.classList.toggle("is-light", isLight);
       mobileToggle.classList.toggle("is-light", isLight);
       mobileLabel.textContent = isLight ? "Mode clair" : "Mode sombre";
     }
 
-    applyTheme(savedTheme);
+    applyTheme(initialTheme);
+
+    // Réagir aux changements de thème système en temps réel
+    // (uniquement si l'utilisateur n'a pas choisi manuellement)
+    prefersDark.addEventListener("change", (e) => {
+      if (!localStorage.getItem("theme-manual")) {
+        applyTheme(e.matches ? "style.css" : "style-light.css");
+      }
+    });
 
     [desktopToggle, mobileToggle].forEach(btn => {
       btn.addEventListener("click", () => {
         const isLight = themeLink.href.includes("style-light");
-        applyTheme(isLight ? "style.css" : "style-light.css");
+        applyTheme(isLight ? "style.css" : "style-light.css", true);
       });
     });
 
