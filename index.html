@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FabLab Lannion</title>
-<link rel="icon" href="https://fablablannion.github.io/images/logo.png">
-<link rel="stylesheet" href="style.css">
-<script src="navbar.js" defer></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FabLab Lannion</title>
+  <link rel="icon" href="https://fablablannion.github.io/images/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="navbar.js" defer></script>
 </head>
 <body>
 
@@ -40,16 +39,21 @@
       <div class="horaire-item"><span>Jeudi</span><strong>14h00 - 19h00</strong></div>
       <div class="horaire-item"><span>Vendredi</span><strong>14h00 - 18h00</strong></div>
       <div class="horaire-item"><span>Samedi</span><strong>10h00 - 17h00</strong></div>
-
-      <!-- ── Planning cette semaine ── -->
-      <div class="semaine-section">
-        <h3>📅 Cette semaine</h3>
-        <div class="semaine-events" id="semaineEvents">
-          <div class="semaine-vide">Chargement…</div>
-        </div>
-        <a href="actualités.html" class="semaine-lien">Voir le planning du mois →</a>
-      </div>
     </div>
+  </div>
+</section>
+
+<!-- =========================
+     PLANNING CETTE SEMAINE
+========================== -->
+<section class="semaine-section-block">
+  <div class="container">
+    <h2>📅 Cette semaine au FabLab</h2>
+    <p class="planning-sous-titre">Retrouvez les ateliers et événements prévus cette semaine.</p>
+    <div class="semaine-events" id="semaineEvents">
+      <div class="semaine-vide">Chargement…</div>
+    </div>
+    <a href="actualités.html" class="semaine-lien">Voir le planning du mois →</a>
   </div>
 </section>
 
@@ -108,7 +112,7 @@
 <!-- FOOTER -->
 <div id="footer"></div>
 <script>
-fetch("Footer.html").then(r=>r.text()).then(d=>{ document.getElementById("footer").innerHTML=d; });
+  fetch("Footer.html").then(r=>r.text()).then(d=>{document.getElementById("footer").innerHTML=d;});
 </script>
 
 <!-- ── Planning cette semaine ── -->
@@ -118,19 +122,16 @@ fetch("Footer.html").then(r=>r.text()).then(d=>{ document.getElementById("footer
     teal:'#1ABFBF', orange:'#F5A623', pink:'#E8366F',
     violet:'#7B4FBF', green:'#3DA35D', navy:'#1a4f8a'
   };
-  const DAY_NAMES_FR = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-  const DAY_SHORT    = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+  const DAY_SHORT = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
 
-  /* Retourne le lundi (00:00) de la semaine contenant `date` */
-  function mondayOf(date) {
+  function mondayOf(date){
     const d = new Date(date);
-    const dow = d.getDay(); // 0=dim..6=sam
-    d.setDate(d.getDate() - ((dow + 6) % 7));
+    const dow = d.getDay();
+    d.setDate(d.getDate() - ((dow+6)%7));
     d.setHours(0,0,0,0);
     return d;
   }
 
-  /* Parse "Juin 2026" → { month:5, year:2026 } */
   const MONTHS_MAP = {
     'Janvier':0,'Février':1,'Mars':2,'Avril':3,'Mai':4,'Juin':5,
     'Juillet':6,'Août':7,'Septembre':8,'Octobre':9,'Novembre':10,'Décembre':11
@@ -141,33 +142,30 @@ fetch("Footer.html").then(r=>r.text()).then(d=>{ document.getElementById("footer
     .then(data => {
       const container = document.getElementById('semaineEvents');
       container.innerHTML = '';
+      const today = new Date();
+      const monday = mondayOf(today);
+      const sunday = new Date(monday); sunday.setDate(monday.getDate()+6);
 
-      const today   = new Date();
-      const monday  = mondayOf(today);
-      const sunday  = new Date(monday); sunday.setDate(monday.getDate() + 6);
-
-      // Parse mois/année du planning
       const [monthStr, yearStr] = data.month.split(' ');
       const planMonth = MONTHS_MAP[monthStr];
-      const planYear  = parseInt(yearStr);
+      const planYear = parseInt(yearStr);
 
-      // Filtre les événements de cette semaine
-      const thisWeek = (data.events || []).filter(ev => {
+      const thisWeek = (data.events||[]).filter(ev => {
         const evDate = new Date(planYear, planMonth, ev.day);
         return evDate >= monday && evDate <= sunday;
       }).sort((a,b) => a.day - b.day);
 
-      if (thisWeek.length === 0) {
+      if(thisWeek.length === 0){
         container.innerHTML = '<div class="semaine-vide">Aucun événement cette semaine.</div>';
         return;
       }
 
       thisWeek.forEach(ev => {
-        const evDate  = new Date(planYear, planMonth, ev.day);
-        const dowIdx  = evDate.getDay();
-        const color   = COLORS[ev.color] || '#1ABFBF';
+        const evDate = new Date(planYear, planMonth, ev.day);
+        const dowIdx = evDate.getDay();
+        const color = COLORS[ev.color] || '#1ABFBF';
         const horaire = ev.timeStart && ev.timeEnd ? `${ev.timeStart} – ${ev.timeEnd}`
-                      : ev.timeStart || ev.timeEnd || '';
+          : ev.timeStart || ev.timeEnd || '';
         const card = document.createElement('div');
         card.className = 'semaine-event-card';
         card.style.background = color;
@@ -177,7 +175,7 @@ fetch("Footer.html").then(r=>r.text()).then(d=>{ document.getElementById("footer
             <span class="jour">${DAY_SHORT[dowIdx]}</span>
           </div>
           <div class="semaine-event-body">
-            <div class="semaine-event-titre">${ev.emoji ? ev.emoji + ' ' : ''}${ev.title}</div>
+            <div class="semaine-event-titre">${ev.emoji ? ev.emoji+' ' : ''}${ev.title}</div>
             ${horaire ? `<div class="semaine-event-horaire">🕐 ${horaire}</div>` : ''}
           </div>`;
         container.appendChild(card);
