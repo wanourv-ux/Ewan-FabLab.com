@@ -97,4 +97,92 @@ It is also a digital and technical outreach space where everyone can build their
         <div class="machine-content"><h3>3D Printer</h3><p>Make prototypes, parts and custom objects with 3D printing.</p></div>
       </div>
       <div class="card machine-card">
-        <div class="machine-image"><img src="image/3d.jpg" alt="3D
+        <div class="machine-image"><img src="image/3d.jpg" alt="3D machine"></div>
+        <div class="machine-content"><h3>3D Printer</h3><p>Make prototypes, parts and custom objects with 3D printing.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="footer"></div>
+<script>
+  fetch("Footer.html").then(r=>r.text()).then(d=>{document.getElementById("footer").innerHTML=d;});
+</script>
+
+<!-- ── This week's schedule ── -->
+<script>
+(function(){
+  const COLORS = {
+    teal:'#1ABFBF', orange:'#F5A623', pink:'#E8366F',
+    violet:'#7B4FBF', green:'#3DA35D', navy:'#1a4f8a'
+  };
+  const DAY_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  function mondayOf(date){
+    const d = new Date(date);
+    const dow = d.getDay();
+    d.setDate(d.getDate() - ((dow+6)%7));
+    d.setHours(0,0,0,0);
+    return d;
+  }
+
+  // French month names: they must match planning-data.json
+  const MONTHS_MAP = {
+    'Janvier':0,'Février':1,'Mars':2,'Avril':3,'Mai':4,'Juin':5,
+    'Juillet':6,'Août':7,'Septembre':8,'Octobre':9,'Novembre':10,'Décembre':11
+  };
+
+  fetch('planning-data.json')
+    .then(r => { if(!r.ok) throw new Error('not found'); return r.json(); })
+    .then(data => {
+      const container = document.getElementById('semaineEvents');
+      container.innerHTML = '';
+      const today = new Date();
+      const monday = mondayOf(today);
+      const sunday = new Date(monday); sunday.setDate(monday.getDate()+6);
+
+      const [monthStr, yearStr] = data.month.split(' ');
+      const planMonth = MONTHS_MAP[monthStr];
+      const planYear = parseInt(yearStr);
+
+      const thisWeek = (data.events||[]).filter(ev => {
+        const evDate = new Date(planYear, planMonth, ev.day);
+        return evDate >= monday && evDate <= sunday;
+      }).sort((a,b) => a.day - b.day);
+
+      if(thisWeek.length === 0){
+        container.innerHTML = '<div class="semaine-vide">No events this week.</div>';
+        return;
+      }
+
+      thisWeek.forEach(ev => {
+        const evDate = new Date(planYear, planMonth, ev.day);
+        const dowIdx = evDate.getDay();
+        const color = COLORS[ev.color] || '#1ABFBF';
+        const horaire = ev.timeStart && ev.timeEnd ? `${ev.timeStart} – ${ev.timeEnd}`
+          : ev.timeStart || ev.timeEnd || '';
+        const card = document.createElement('div');
+        card.className = 'semaine-event-card';
+        card.style.background = color;
+        card.innerHTML = `
+          <div class="semaine-event-date">
+            <span class="num">${ev.day}</span>
+            <span class="jour">${DAY_SHORT[dowIdx]}</span>
+          </div>
+          <div class="semaine-event-body">
+            <div class="semaine-event-titre">${ev.emoji ? ev.emoji+' ' : ''}${ev.title}</div>
+            ${horaire ? `<div class="semaine-event-horaire">🕐 ${horaire}</div>` : ''}
+          </div>`;
+        container.appendChild(card);
+      });
+    })
+    .catch(() => {
+      document.getElementById('semaineEvents').innerHTML =
+        '<div class="semaine-vide">Schedule not available.</div>';
+    });
+})();
+</script>
+
+</body>
+</html>
