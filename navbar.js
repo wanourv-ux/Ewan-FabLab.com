@@ -1,6 +1,6 @@
 /* =========================================================
-   NAVBAR — thème persistant entre les pages via localStorage
-   Priorité : localStorage > prefers-color-scheme
+   NAVBAR — theme persisted across pages via localStorage
+   Priority: localStorage > prefers-color-scheme
 ========================================================= */
 
 (function () {
@@ -15,20 +15,20 @@ class NavBar extends HTMLElement {
       <header class="navbar">
         <div class="navbar-container">
           <a href="index.html" class="logo">
-            <img src="https://fablablannion.github.io/images/logo.png" alt="Logo FabLab" class="logo-img">
+            <img src="https://fablablannion.github.io/images/logo.png" alt="FabLab logo" class="logo-img">
             FabLab Lannion
           </a>
 
           <nav class="nav-links" id="nav-links">
-            <a href="index.html">Accueil</a>
-            <a href="Project.html">Projets</a>
-            <a href="actualités.html">Actualités</a>
-            <a href="Tarifs.html">Tarifs</a>
-            <a href="Bénévoles.html">Bénévoles</a>
+            <a href="index.html">Home</a>
+            <a href="Project.html">Projects</a>
+            <a href="actualités.html">News</a>
+            <a href="Tarifs.html">Pricing</a>
+            <a href="Bénévoles.html">Volunteers</a>
             <a href="https://bookstack.ouedraoknopp.bzh/" target="_blank" rel="noopener noreferrer">Wiki</a>
             <div class="nav-theme-row" id="mobile-theme-row">
-              <span class="nav-theme-label" id="mobile-theme-label">Mode sombre</span>
-              <button id="mobile-theme-toggle" class="pill-switch" aria-label="Changer de thème">
+              <span class="nav-theme-label" id="mobile-theme-label">Dark mode</span>
+              <button id="mobile-theme-toggle" class="pill-switch" aria-label="Change theme">
                 <span class="pill-track">
                   <span class="pill-thumb">
                     <span class="pill-icon"></span>
@@ -39,7 +39,7 @@ class NavBar extends HTMLElement {
           </nav>
 
           <div class="navbar-right">
-            <button id="desktop-theme-toggle" class="pill-switch" aria-label="Changer de thème">
+            <button id="desktop-theme-toggle" class="pill-switch" aria-label="Change theme">
               <span class="pill-track">
                 <span class="pill-thumb">
                   <span class="pill-icon"></span>
@@ -69,7 +69,7 @@ class NavBar extends HTMLElement {
     const syncUI = () => {
       const dark = isDark();
       toggles.forEach(btn => btn.classList.toggle("is-light", !dark));
-      if (label) label.textContent = dark ? "Mode sombre" : "Mode clair";
+      if (label) label.textContent = dark ? "Dark mode" : "Light mode";
     };
 
     syncUI();
